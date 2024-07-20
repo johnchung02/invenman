@@ -8,7 +8,7 @@ export default function Inventory() {
 
     const listItems = items.map((item, index) => (
         <li key={index}>
-            {item.name} // {item.quantity} // {item.price}
+            {item.name} - {item.quantity} - {item.price}
         </li>
     )); 
 
