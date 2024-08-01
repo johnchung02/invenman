@@ -1,4 +1,3 @@
-import Search from './Search';
 import Inventory from './Inventory';
 
 import './App.css';
@@ -6,7 +5,6 @@ import './App.css';
 function App() {
   return (
     <div>
-      <Search/>
       <Inventory/>
     </div>
   );
