@@ -15,15 +15,25 @@ router.get("/", async (req, res) => {
     res.send(results).status(200);
 });
 
+// get a list of all items with matching name and company
 router.get("/:searchTerm", async (req, res) => {
     let collection = await db.collection("items");
-    let results = await collection.find({
+    let query = {
         $or: [
             { name: { $regex: req.params.searchTerm, $options: 'i' } },
             { company: { $regex: req.params.searchTerm, $options: 'i' } }
             ]
-    }).toArray();
-    res.send(results).status(200);
+    };
+    let results = await collection.find(query).toArray();
+    res.status(200).send(results);
+});
+
+// get details about a specific item
+router.get("/item/:id", async (req, res) => {
+    let collection = await db.collection("items");
+    let query = { _id: new ObjectId(req.params.id) };
+    let result = await collection.findOne(query);
+    res.status(200).send(result);
 });
 
 // add a new item to the collection

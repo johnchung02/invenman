@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/item", routes);
+app.use("/inventory", routes);
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);

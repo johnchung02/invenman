@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Item = (props) => (
     <div className="flex">
         {props.item.name}
         {props.item.company}
-        <button>
+        <Link to={`/inventory/item/${props.item._id}`}>
             배송 추가
-        </button>
+        </Link>
     </div>
 );
 
@@ -17,7 +18,7 @@ export default function ItemList() {
     useEffect (() => {
         if (items.length === 0 && searchTerm.length === 0) {
             async function getItems() {
-                const response = await fetch (`http://localhost:5050/item/`)
+                const response = await fetch (`http://localhost:5050/inventory/`)
                 if (!response.ok) {
                     const message = `An error occurred: ${response.statusText}`;
                     console.error(message);
@@ -33,7 +34,7 @@ export default function ItemList() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await fetch (`http://localhost:5050/item/${searchTerm}`);
+        const response = await fetch (`http://localhost:5050/inventory/${searchTerm}`);
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
             console.error(message);
@@ -57,7 +58,7 @@ export default function ItemList() {
             (
                 <div>
                     {items.map((item) => (
-                        <div>
+                        <div key={item._id}>
                             <button>
                                 <Item item={item} />
                             </button>

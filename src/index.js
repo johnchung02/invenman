@@ -8,6 +8,7 @@ import App from "./App";
 import "./index.css";
 import ItemList from "./components/ItemList";
 import ItemForm from "./components/ItemForm";
+import Item from "./components/Item";
 
 const router = createBrowserRouter([
   {
@@ -31,12 +32,12 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/edit/:id",
+    path: "/inventory/item/:id",
     element: <App />,
     children: [
       {
-        path: "/edit/:id",
-        element: <ItemForm />
+        path: "/inventory/item/:id",
+        element: <Item />
       },
     ],
   },
