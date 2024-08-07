@@ -1,11 +1,13 @@
-import Inventory from './Inventory';
+import { Outlet } from 'react-router-dom';
+import NavBar from './components/Navbar';
 
 import './App.css';
 
 function App() {
   return (
     <div>
-      <Inventory/>
+      <NavBar />
+      <Outlet />
     </div>
   );
 }

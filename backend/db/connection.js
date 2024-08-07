@@ -15,7 +15,7 @@ try {
     await client.connect();
 
     // send a pign to confirm succeful connection
-    await client.db("admin").commanf({ ping: 1} );
+    await client.db("admin").command({ ping: 1} );
     console.log("Connected to MongoDB");
 } catch (err) {
     console.error(err);
