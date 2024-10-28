@@ -45,10 +45,27 @@ router.post("/", async (req, res) => {
         };
         let collection = await db.collection("items");
         let results = await collection.insertOne(newItem);
-        res.send(results).status(201);
+        res.status(201).send(results);
     } catch (err) {
         console.error(err);
         res.status(500).send("error creating item");
+    }
+});
+
+// add a new delivery
+router.post("/delivery/:id", async (req, res) => {
+    try {
+        let newDelivery = req.body;
+        let collection = await db.collection("items");
+        let filter = { _id: new ObjectId(req.params.id) };
+        let query = {
+            $push: { deliveries: newDelivery }
+        };
+        let result = await collection.updateOne(filter, query);
+        res.status(201).send(result);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("error creating delivery");
     }
 });
 

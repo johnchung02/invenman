@@ -15,7 +15,7 @@ export default function ItemForm() {
             const id = params.id?.toString() || undefined;
             if (!id) return;
             setIsNew(false);
-            const response = await fetch(`http://localhost:5050/item/${params.id.toString()}`);
+            const response = await fetch(`http://localhost:5050/inventory/${params.id.toString()}`);
             if (!response.ok) {
                 console.error(response.statusText);
                 return;
@@ -45,7 +45,7 @@ export default function ItemForm() {
         try {
             let response;
             if (isNew) {
-                response = await fetch("http://localhost:5050/item", 
+                response = await fetch("http://localhost:5050/inventory", 
                     {
                     method: "POST",
                     headers: {
@@ -54,7 +54,6 @@ export default function ItemForm() {
                     body: JSON.stringify(item),
                 });
             }
-
             if (!response.ok) {
                 throw new Error(`${response.status}`)
             }

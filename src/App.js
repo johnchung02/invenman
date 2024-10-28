@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   return (
-    <div>
+    <div className="bg-slate-500 min-h-screen">
       <NavBar />
       <Outlet />
     </div>
